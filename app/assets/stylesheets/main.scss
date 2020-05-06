@@ -1,0 +1,47 @@
+body {
+  background-color: #FDDBDF;
+  background: image-url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.grid-x {
+  margin: 15px 25px 15px 25px;
+}
+
+.callout {
+  margin: 15px 15px 15px 15px;
+  padding: 60px 10px 60px 10px;
+  background-color: #478559;
+  border: 5px solid #39A0CA;
+}
+
+.group-name {
+  font-weight: 700;
+  color: #161748;
+}
+
+.top-bar-section, ul.right {
+  background-color: #39A0CA;
+}
+
+.top-bar-section, .right, p {
+  background-color: #39A0CA;
+  color: #161748;
+}
+
+.top-bar, .top-bar-text, a {
+  color: #161748;
+}
+
+.top-bar, .top-bar-text, a:hover {
+  color: white;
+}
+
+.top-bar {
+  background-color: #39A0CA;
+}
+
+.gimme-space {
+  margin-top: 10px;
+  margin-bottom: 10%;
+}
