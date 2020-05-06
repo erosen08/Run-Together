@@ -8,18 +8,18 @@ const GroupsIndexContainer = (props) => {
 
   useEffect(() => {
     fetch('/api/v1/groups')
-      .then((response) => {
-        if (response.ok) {
-          return response
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`
+    .then((response) => {
+      if (response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`
             error = new Error(errorMessage)
-          throw error
-        }
-      })
-      .then((response) => response.json())
-      .then(parsedGroupData => setGroups(parsedGroupData))
-      .catch((error) => console.error(`Error in fetch: ${error.message}`))
+        throw error
+      }
+    })
+    .then((response) => response.json())
+    .then(parsedGroupData => setGroups(parsedGroupData))
+    .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
   const groupTiles = groups.map(group => {
