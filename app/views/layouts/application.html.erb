@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RunTogether</title>
+  <title>Run Together</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
@@ -9,15 +9,15 @@
 <body>
 
   <nav class="top-bar">
-    <h1><a href="/">RunTogether</a></h1>
+    <h1 class="top-bar-text"><a href="/">Run Together</a></h1>
 
     <section class="top-bar-section">
       <ul class="right">
         <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <p><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></p>
         <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <p><%= link_to 'Sign Up', new_user_registration_path %></p>
+          <p><%= link_to 'Sign In', new_user_session_path %></p>
         <%- end -%>
       </ul>
     </section>

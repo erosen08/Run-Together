@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
-import GroupTile from "../components/GroupTile";
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
+import GroupTile from "../components/GroupTile"
 
 const GroupsIndexContainer = (props) => {
   const [groups, setGroups] = useState([])
@@ -31,7 +33,14 @@ const GroupsIndexContainer = (props) => {
 
   return (
     <div>
-      {groupTiles}
+      <div className="grid-container">
+        <div className="grid-x grid-margin-x gimme-space">
+          {groupTiles}
+        </div>
+      </div>
+      <div>
+        <Link to="/groups/new">Add a Group</Link>
+      </div>
     </div>
   )
 }
