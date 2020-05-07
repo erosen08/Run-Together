@@ -22,7 +22,7 @@ const GroupsShowContainer = props => {
       }
     })
     .then(response => response.json())
-    .then(parsedGroup => setGroup(parsedGroup))
+    .then(parsedGroup => setGroup(parsedGroup.group))
     .catch(error => console.error(`Error in fetch: ${errorMessage}`))
   }, [])
 
