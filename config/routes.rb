@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   get '/groups', to: 'static_pages#index'
   get '/groups/new', to: 'static_pages#index'
   get '/groups/:id', to: 'static_pages#index'
+  get "/groups/:id/edit", to: 'static_pages#index'
 
   namespace :api do
     namespace :v1 do
-      resources :groups, only: [:index, :show, :create]
+      resources :groups, only: [:index, :show, :create, :update]
     end
   end
 end
