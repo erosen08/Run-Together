@@ -16,6 +16,18 @@ class Api::V1::GroupsController < ApplicationController
     end
   end
 
+  def update
+    group = Group.find(params[:id])
+    validUpdate = Group.new(group_params)
+    if validUpdate.valid?
+      group.update(group_params)
+      group.save
+      render json: { group: group }
+    else
+      render json: { error: validUpdate.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def group_params

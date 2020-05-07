@@ -91,4 +91,38 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       expect(response_body["error"][0]).to eq "Description can't be blank"
     end
   end
+
+  describe "PATCH#edit" do
+    it "updates an existing group but does not create a new entry on the database" do
+      happy_body = { id: group1.id, group: { name: "A Better Group 1", description: "New and Improved" } }
+
+      previous_count = Group.count
+      patch :update, params: happy_body, format: :json
+
+      expect(Group.count).to eq(previous_count)
+    end
+
+    it "returns the json of the newly edited group" do
+      happy_body = { id: group1.id, group: { name: "A Better Group 1", description: "New and Improved" } }
+
+      patch :update, params: happy_body, format: :json
+      response_body = JSON.parse(response.body)
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json")
+
+      expect(response_body).to be_kind_of(Hash)
+      expect(response_body).to_not be_kind_of(Array)
+      expect(response_body["group"]["name"]).to eq "A Better Group 1"
+      expect(response_body["group"]["description"]).to eq "New and Improved"
+    end
+
+    it "returns an error when required field is blank" do
+      sad_body = { id: group1.id, group: { description: "Where's my name?" } }
+
+      post :update, params: sad_body, format: :json
+      response_body = JSON.parse(response.body)
+
+      expect(response_body["error"][0]).to eq "Name can't be blank"
+    end
+  end
 end
