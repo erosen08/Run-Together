@@ -18,7 +18,7 @@ const GroupsIndexContainer = (props) => {
       }
     })
     .then((response) => response.json())
-    .then(parsedGroupData => setGroups(parsedGroupData))
+    .then(parsedGroupData => setGroups(parsedGroupData.groups))
     .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
 

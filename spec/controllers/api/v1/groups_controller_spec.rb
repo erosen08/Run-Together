@@ -45,4 +45,50 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       expect(response_body["group"]["description"]).to eq group1.description
     end
   end
+
+  describe "POST#create" do
+    let!(:new_group) { { group: { name: "New Group", description: "Hey I'm new" } } }
+    let!(:no_name) { { group: { description: "I have no name" } } }
+    let!(:no_description) { { group: {name: "Failing Group" } } }
+
+    it "adds a new group to the database when entry is valid" do
+      previous_count = Group.count
+      post :create, params: new_group, format: :json
+
+      expect(Group.count).to eq(previous_count + 1)
+    end
+
+    it "returns json of newly formed group" do
+      post :create, params: new_group, format: :json
+      response_body = JSON.parse(response.body)
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json")
+
+      expect(response_body).to be_kind_of(Hash)
+      expect(response_body).to_not be_kind_of(Array)
+      expect(response_body["group"]["name"]).to eq "New Group"
+      expect(response_body["group"]["description"]).to eq "Hey I'm new"
+    end
+
+    it "does not add a new group to the database upon invalid submission" do
+      prev_count = Group.count
+
+      post :create, params: no_name, format: :json
+      expect(Group.count).to eq prev_count
+
+      post :create, params: no_description, format: :json
+      expect(Group.count).to eq prev_count
+    end
+
+    it "raises an error upon an invalid submission" do
+      post :create, params: no_name, format: :json
+      response_body = JSON.parse(response.body)
+      expect(response_body["error"][0]).to eq "Name can't be blank"
+
+      post :create, params: no_description, format: :json
+      response_body = JSON.parse(response.body)
+      expect(response_body["error"][0]).to eq "Description can't be blank"
+    end
+  end
 end

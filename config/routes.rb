@@ -3,11 +3,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   get '/groups', to: 'static_pages#index'
+  get '/groups/new', to: 'static_pages#index'
   get '/groups/:id', to: 'static_pages#index'
 
   namespace :api do
     namespace :v1 do
-      resources :groups, only: [:index, :show]
+      resources :groups, only: [:index, :show, :create]
     end
   end
 end
