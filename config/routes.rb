@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   get '/groups', to: 'static_pages#index'
-  get '/groups/new', to: 'static_pages#index'
-  get '/groups/:id', to: 'static_pages#index'
-  get "/groups/:id/edit", to: 'static_pages#index'
+  get '/groups/new', to: 'static_pages#authenticate'
+  get '/groups/:id', to: 'static_pages#authenticate'
+  get "/groups/:id/edit", to: 'static_pages#authenticate'
 
   namespace :api do
     namespace :v1 do
