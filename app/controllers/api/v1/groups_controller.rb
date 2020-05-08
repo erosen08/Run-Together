@@ -28,6 +28,15 @@ class Api::V1::GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    group = Group.find(params[:id])
+    if group.destroy
+      render json: { notification: "Group successfully removed" }
+    else
+      render json: { error: "Unable to process this request" }
+    end
+  end
+
   private
 
   def group_params

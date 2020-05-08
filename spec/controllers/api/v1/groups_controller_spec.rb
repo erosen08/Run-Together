@@ -125,4 +125,17 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       expect(response_body["error"][0]).to eq "Name can't be blank"
     end
   end
+
+  describe "DELETE#destroy" do
+    it "deletes a group" do
+      group = { id: group1 }
+
+      prev_count = Group.count
+      delete :destroy, params: group, format: :json
+      expect(Group.count).to eq(prev_count - 1)
+      response_body = JSON.parse(response.body)
+
+      expect(response_body["notification"]).to eq "Group successfully removed"
+    end
+  end
 end
