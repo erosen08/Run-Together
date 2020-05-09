@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 
 import GroupShowTile from '../components/GroupShowTile'
+import UserTile from '../components/UserTile'
 
 const GroupsShowContainer = props => {
   const [errors, setErrors] = useState(null)
   const [redirect, setRedirect] = useState(false)
   const [group, setGroup] = useState({
     name: "",
-    description: ""
+    description: "",
+    users: []
   })
+  const [groupUsers, setGroupUsers] = useState([])
 
   const id = props.match.params.id
 
@@ -26,9 +29,22 @@ const GroupsShowContainer = props => {
       }
     })
     .then(response => response.json())
-    .then(parsedGroup => setGroup(parsedGroup.group))
+    .then(parsedGroup => {
+      setGroup(parsedGroup.group)
+      setGroupUsers(parsedGroup.group.users)
+    })
     .catch(error => console.error(`Error in fetch: ${errorMessage}`))
   }, [])
+
+  const usersList = groupUsers.map(user => {
+    return (
+      <UserTile
+      key={user.id}
+      first_name={user.first_name}
+      last_name={user.last_name}
+      />
+    )
+  })
 
   const deleteGroup = (group) =>  {
     if (window.confirm('Are you sure you would like to delete this group?')) {
@@ -73,6 +89,8 @@ const GroupsShowContainer = props => {
   return(
     <div>
       <GroupShowTile group={group} />
+      <h5>Roster:</h5>
+      {usersList}
       <Link to={`/groups/${id}/edit`}>Edit this Group</Link><br />
       <button onClick={handleDelete}>Delete</button><br />
       <Link to="/">Back to Home</Link>
