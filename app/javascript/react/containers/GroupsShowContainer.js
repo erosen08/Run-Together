@@ -113,7 +113,7 @@ const GroupsShowContainer = props => {
     joinGroup(group)
   }
 
-  const leaveGroup = () => {
+  const leaveGroup = (group) => {
     fetch(`/api/v1/memberships/${id}`, {
       credentials: "same-origin",
       method: 'DELETE',
@@ -142,7 +142,7 @@ const GroupsShowContainer = props => {
 
   const handleLeave = event => {
     event.preventDefault()
-    leaveGroup()
+    leaveGroup(group)
   }
 
   if (redirectLeave) {

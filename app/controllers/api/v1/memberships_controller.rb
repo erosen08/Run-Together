@@ -18,7 +18,7 @@ class Api::V1::MembershipsController < ApplicationController
   def destroy
     group = Group.find(params[:id])
     user = current_user
-    membership = current_user.memberships.where(group_id => group)
+    membership = Membership.where(user: user, group: group)
 
     if membership.destroy
       render json: { notification: "You have left the group successfully removed" }
