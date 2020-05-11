@@ -20,6 +20,10 @@ a {
   color: #EFB57C;
 }
 
+a:hover {
+  color: white;
+}
+
 ul.right {
   background-color: #302d20;
 }
@@ -28,4 +32,16 @@ ul.right {
   color: black;
   text-align: center;
   text-decoration: underline;
+}
+
+.devise {
+  padding-bottom: 15px;
+}
+
+.devise a {
+  color: black;
+}
+
+.devise a:hover {
+  color: #E7704F;
 }
