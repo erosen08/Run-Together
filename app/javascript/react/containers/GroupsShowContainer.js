@@ -77,7 +77,7 @@ const GroupsShowContainer = props => {
   }
 
   const joinGroup = (group) => {
-    fetch('/api/v1/memberships', {
+    fetch(`/api/v1/groups/${id}/memberships`, {
       credentials: "same-origin",
       method: 'POST',
       body: JSON.stringify(group),
@@ -105,7 +105,7 @@ const GroupsShowContainer = props => {
   }
 
   if (redirectJoin) {
-    return <Redirect to={'/groups'} />
+    return <Redirect to={`/groups/${id}`} />
   }
 
   const handleJoin = event => {
@@ -113,47 +113,10 @@ const GroupsShowContainer = props => {
     joinGroup(group)
   }
 
-  const leaveGroup = (group) => {
-    fetch(`/api/v1/memberships/${id}`, {
-      credentials: "same-origin",
-      method: 'DELETE',
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    })
-    .then(response => {
-      if(response.ok) {
-        return response
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-        throw(error)
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-      if (body.notification) {
-        setRedirectLeave(true)
-      }
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`))
-  }
-
-  const handleLeave = event => {
-    event.preventDefault()
-    leaveGroup(group)
-  }
-
-  if (redirectLeave) {
-    return <Redirect to={'/groups'} />
-  }
-
   return(
     <div>
       <GroupShowTile group={group} />
       <button onClick={handleJoin}>Join this Group</button><br />
-      <button onClick={handleLeave}>Leave this Group</button><br />
       <Link to={`/groups/${id}/edit`}>Edit this Group</Link><br />
       <button onClick={handleDelete}>Delete</button><br />
       <Link to="/">Back to Home</Link>
