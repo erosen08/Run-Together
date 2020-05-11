@@ -40,6 +40,7 @@ const GroupEditContainer = props => {
 
   return (
     <div>
+    <h2>Edit this Group</h2>
       <GroupEditForm
         editGroup={editGroup}
         id={id}

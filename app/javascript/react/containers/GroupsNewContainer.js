@@ -41,6 +41,7 @@ const GroupsNewContainer = props => {
 
   return (
     <div>
+    <h2>Add a New Group</h2>
       <GroupNewForm addNewGroup={addNewGroup} />
     </div>
   )
