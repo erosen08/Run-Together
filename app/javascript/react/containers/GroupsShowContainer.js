@@ -9,6 +9,7 @@ const GroupsShowContainer = props => {
   const [errors, setErrors] = useState(null)
   const [redirect, setRedirect] = useState(false)
   const [redirectJoin, setRedirectJoin] = useState(false)
+  const [redirectLeave, setRedirectLeave] = useState(false)
   const [group, setGroup] = useState({
     name: "",
     description: ""
@@ -98,12 +99,13 @@ const GroupsShowContainer = props => {
     .then(body => {
       if (body.membership) {
         setRedirectJoin(true)
+      }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
 
   if (redirectJoin) {
-    return <Redirect to={`/groups/${id}` />
+    return <Redirect to={'/groups'} />
   }
 
   const handleJoin = event => {
@@ -111,10 +113,47 @@ const GroupsShowContainer = props => {
     joinGroup(group)
   }
 
+  const leaveGroup = (user) => {
+    fetch(`/api/v1/memberships/${id}`, {
+      credentials: "same-origin",
+      method: 'DELETE',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      if(response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      if (body.notification) {
+        setRedirectLeave(true)
+      }
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
+
+  const handleLeave = event => {
+    event.preventDefault()
+    leaveGroup(user)
+  }
+
+  if (redirectLeave) {
+    return <Redirect to={'/groups'} />
+  }
+
   return(
     <div>
       <GroupShowTile group={group} />
       <button onClick={handleJoin}>Join this Group</button><br />
+      <button onClick={handleLeave}>Leave this Group</button><br />
       <Link to={`/groups/${id}/edit`}>Edit this Group</Link><br />
       <button onClick={handleDelete}>Delete</button><br />
       <Link to="/">Back to Home</Link>
