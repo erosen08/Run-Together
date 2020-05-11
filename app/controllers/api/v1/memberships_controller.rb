@@ -10,7 +10,7 @@ class Api::V1::MembershipsController < ApplicationController
     membership.user = current_user
 
     if membership.save
-      render json: membership.group
+      render json: { membership: membership }
     else
       render json: { error: membership.errors.full_messages }, status: :unprocessable_entity
     end

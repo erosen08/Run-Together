@@ -8,6 +8,7 @@ const GroupsShowContainer = props => {
   const [user, setUser] = useState({});
   const [errors, setErrors] = useState(null)
   const [redirect, setRedirect] = useState(false)
+  const [redirectJoin, setRedirectJoin] = useState(false)
   const [group, setGroup] = useState({
     name: "",
     description: ""
@@ -95,9 +96,14 @@ const GroupsShowContainer = props => {
     })
     .then(response => response.json())
     .then(body => {
-      debugger
+      if (body.membership) {
+        setRedirectJoin(true)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
+
+  if (redirectJoin) {
+    return <Redirect to={`/groups/${id}` />
   }
 
   const handleJoin = event => {
