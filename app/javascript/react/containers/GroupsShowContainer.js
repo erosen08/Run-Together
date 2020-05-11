@@ -77,6 +77,8 @@ const GroupsShowContainer = props => {
   return(
     <div>
       <GroupShowTile group={group} />
+      <Link to={`${id}/runs`}>Group Runs</Link><br />
+      <Link to={`${id}/runs/new`}>Create a New Group Run</Link><br />
       <Link to={`/groups/${id}/edit`}>Edit this Group</Link><br />
       <button onClick={handleDelete}>Delete</button><br />
       <Link to="/">Back to Home</Link>

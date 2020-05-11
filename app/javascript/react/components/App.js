@@ -5,6 +5,7 @@ import GroupsIndexContainer from '../containers/GroupsIndexContainer'
 import GroupsShowContainer from '../containers/GroupsShowContainer'
 import GroupsNewContainer from '../containers/GroupsNewContainer'
 import GroupsEditContainer from '../containers/GroupsEditContainer'
+import GroupRunsContainer from '../containers/GroupRunsContainer'
 
 export const App = (props) => {
 
@@ -16,6 +17,7 @@ export const App = (props) => {
         <Route exact path='/groups/new' component={GroupsNewContainer} />
         <Route exact path='/groups/:id' component={GroupsShowContainer} />
         <Route exact path='/groups/:id/edit' component={GroupsEditContainer} />
+        <Route exact path='/groups/:id/runs' component={GroupRunsContainer} />
       </Switch>
     </BrowserRouter>
   )
