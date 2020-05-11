@@ -1,5 +1,4 @@
 class Api::V1::MembershipsController < ApplicationController
-
   def index
     render json: Membership.all
   end
@@ -17,7 +16,10 @@ class Api::V1::MembershipsController < ApplicationController
   end
 
   def destroy
-  membership = Membership.find(params[:id])
+    group = Group.find(params[:id])
+    user = current_user
+    membership = current_user.memberships.where(group_id => group)
+
     if membership.destroy
       render json: { notification: "You have left the group successfully removed" }
     else

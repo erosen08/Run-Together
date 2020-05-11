@@ -76,11 +76,11 @@ const GroupsShowContainer = props => {
     deleteGroup(group)
   }
 
-  const joinGroup = (user) => {
+  const joinGroup = (group) => {
     fetch('/api/v1/memberships', {
       credentials: "same-origin",
       method: 'POST',
-      body: JSON.stringify(user),
+      body: JSON.stringify(group),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -97,7 +97,7 @@ const GroupsShowContainer = props => {
     })
     .then(response => response.json())
     .then(body => {
-      if (body.membership) {
+      if (body.notification) {
         setRedirectJoin(true)
       }
     })
@@ -113,7 +113,7 @@ const GroupsShowContainer = props => {
     joinGroup(group)
   }
 
-  const leaveGroup = (user) => {
+  const leaveGroup = () => {
     fetch(`/api/v1/memberships/${id}`, {
       credentials: "same-origin",
       method: 'DELETE',
@@ -142,7 +142,7 @@ const GroupsShowContainer = props => {
 
   const handleLeave = event => {
     event.preventDefault()
-    leaveGroup(user)
+    leaveGroup()
   }
 
   if (redirectLeave) {
