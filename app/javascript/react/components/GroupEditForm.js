@@ -46,7 +46,7 @@ const GroupEditForm = props =>  {
   }
 
   return(
-    <div>
+    <div className="grid-container">
       <form onSubmit={handleSubmit}>
         <ErrorList errors={errors} />
         <label className="name">
@@ -55,6 +55,7 @@ const GroupEditForm = props =>  {
             name="name"
             id="name"
             type="text"
+            placeholder="New Name"
             onChange={handleInputChange}
             value={editFormPayload.name}
           />
@@ -65,6 +66,7 @@ const GroupEditForm = props =>  {
             name="description"
             id="description"
             type="text"
+            placeholder="New Description"
             onChange={handleInputChange}
             value={editFormPayload.description}
           />

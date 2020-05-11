@@ -45,33 +45,37 @@ const GroupNewForm = props => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ErrorList errors={errors} />
-      <label className="name">
-        Name:
-        <input
-          name="name"
-          id="name"
-          type="text"
-          onChange={handleInputChange}
-          value={newFormPayload.name}
-        />
-      </label>
-      <label className="description">
-        Description:
-        <input
-          name="description"
-          id="description"
-          type="text"
-          onChange={handleInputChange}
-          value={newFormPayload.description}
-        />
-      </label>
+    <div className="grid-container">
+      <form onSubmit={handleSubmit}>
+        <ErrorList errors={errors} />
+        <label className="name">
+          Name:
+          <input
+            name="name"
+            id="name"
+            type="text"
+            placeholder="Name"
+            onChange={handleInputChange}
+            value={newFormPayload.name}
+          />
+        </label>
+        <label className="description">
+          Description:
+          <input
+            name="description"
+            id="description"
+            type="text"
+            placeholder="Description"
+            onChange={handleInputChange}
+            value={newFormPayload.description}
+          />
+        </label>
 
-    <div className="button-group">
-      <input className="button" type="submit" value="Add New Group" />
+      <div className="button-group">
+        <input className="button" type="submit" value="Add New Group" />
+      </div>
+      </form>
     </div>
-    </form>
   )
 }
 

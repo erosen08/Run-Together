@@ -6,7 +6,7 @@ const GroupTile = (props) => {
   return (
     <div>
       <h3>
-        <Link to={`/groups/${props.group.id}`} className="group-name">{props.group.name}</Link>
+        <Link to={`/groups/${props.group.id}`} className="group-callout">{props.group.name}</Link>
       </h3>
     </div>
   )
