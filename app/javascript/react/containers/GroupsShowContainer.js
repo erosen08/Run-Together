@@ -5,13 +5,13 @@ import { Redirect } from 'react-router-dom'
 import GroupShowTile from '../components/GroupShowTile'
 
 const GroupsShowContainer = props => {
+  const [user, setUser] = useState({});
   const [errors, setErrors] = useState(null)
   const [redirect, setRedirect] = useState(false)
   const [group, setGroup] = useState({
     name: "",
     description: ""
   })
-  const [groupUsers, setGroupUsers] = useState([])
 
   const id = props.match.params.id
 
@@ -29,7 +29,7 @@ const GroupsShowContainer = props => {
     .then(response => response.json())
     .then(parsedGroup => {
       setGroup(parsedGroup.group)
-      setGroupUsers(parsedGroup.group.users)
+      setUser(parsedGroup.group.user)
     })
     .catch(error => console.error(`Error in fetch: ${errorMessage}`))
   }, [])
@@ -74,9 +74,41 @@ const GroupsShowContainer = props => {
     deleteGroup(group)
   }
 
+  const joinGroup = (user) => {
+    fetch('/api/v1/memberships', {
+      credentials: "same-origin",
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      if(response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      debugger
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
+
+  const handleJoin = event => {
+    event.preventDefault()
+    joinGroup(group)
+  }
+
   return(
     <div>
       <GroupShowTile group={group} />
+      <button onClick={handleJoin}>Join this Group</button><br />
       <Link to={`/groups/${id}/edit`}>Edit this Group</Link><br />
       <button onClick={handleDelete}>Delete</button><br />
       <Link to="/">Back to Home</Link>
