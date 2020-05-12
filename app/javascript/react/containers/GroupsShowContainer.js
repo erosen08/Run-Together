@@ -9,7 +9,8 @@ const GroupsShowContainer = props => {
   const [redirect, setRedirect] = useState(false)
   const [group, setGroup] = useState({
     name: "",
-    description: ""
+    description: "",
+    runs: []
   })
   const [groupUsers, setGroupUsers] = useState([])
 
@@ -77,7 +78,10 @@ const GroupsShowContainer = props => {
   return(
     <div>
       <div className="show">
-        <GroupShowTile group={group} />
+        <GroupShowTile
+          group={group}
+          runs={group.runs}
+        />
       </div>
       <div className="bottom-bar">
         <Link to={`/groups/${id}/edit`}>Edit this Group</Link><br />
