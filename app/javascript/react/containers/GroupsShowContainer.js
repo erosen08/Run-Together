@@ -12,7 +12,8 @@ const GroupsShowContainer = props => {
   const [redirectLeave, setRedirectLeave] = useState(false)
   const [group, setGroup] = useState({
     name: "",
-    description: ""
+    description: "",
+    runs: []
   })
 
   const id = props.match.params.id
@@ -115,11 +116,18 @@ const GroupsShowContainer = props => {
 
   return(
     <div>
-      <GroupShowTile group={group} />
-      <button onClick={handleJoin}>Join this Group</button><br />
-      <Link to={`/groups/${id}/edit`}>Edit this Group</Link><br />
-      <button onClick={handleDelete}>Delete</button><br />
-      <Link to="/">Back to Home</Link>
+      <div className="show">
+        <GroupShowTile
+          group={group}
+          runs={group.runs}
+        />
+      </div>
+      <div className="bottom-bar">
+        <button onClick={handleJoin}>Join this Group</button><br />
+        <Link to={`/groups/${id}/edit`}>Edit this Group</Link><br />
+        <button className="delete-group" onClick={handleDelete}>Delete</button><br />
+        <Link to="/">Back to Home</Link>
+      </div>
     </div>
   )
 }

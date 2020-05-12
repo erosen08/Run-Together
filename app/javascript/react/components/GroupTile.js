@@ -1,12 +1,12 @@
-import React from "react"
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 const GroupTile = (props) => {
 
   return (
-    <div>
+    <div className="group-name callout">
       <h3>
-        <Link to={`/groups/${props.group.id}`} className="group-callout">{props.group.name}</Link>
+        <Link to={`/groups/${props.group.id}`}>{props.group.name}</Link>
       </h3>
     </div>
   )
