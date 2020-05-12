@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const RunTile = props => {
+  debugger
 
   return (
     <div>
-      {props.run.name}
+      <Link to={`/groups/${props.run.group_id}/runs/${props.run.id}`}>{props.run.name}</Link>
     </div>
   )
 }
