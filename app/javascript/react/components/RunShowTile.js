@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+
+import MapComponent from './MapComponent'
 
 const RunShowTile = (props) => {
 
@@ -12,7 +13,8 @@ const RunShowTile = (props) => {
         <p>Description: {props.run.description}</p>
         <p>Start Time: {props.run.start_time}</p>
         <p>Distance: {props.run.distance}</p>
-        <p>Map: {props.run.start_location}</p>
+        <p>{props.run.start_location}</p>
+        <MapComponent location={props.run.start_location} />
       </div>
     </div>
   )
