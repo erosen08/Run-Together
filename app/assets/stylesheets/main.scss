@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+
 body {
   background-color: #FDDBDF;
   background: image-url('background.png') no-repeat center center fixed;
@@ -6,10 +8,12 @@ body {
 
 h2 {
   text-align: center;
+  font-family: 'Oswald', sans-serif;
 }
 
 label {
   font-size: 115%;
+  font-family: 'Oswald', sans-serif;
 }
 
 .top-bar {
@@ -18,6 +22,7 @@ label {
 
 a {
   color: #EFB57C;
+  font-family: 'Oswald', sans-serif;
 }
 
 a:hover {
@@ -32,6 +37,7 @@ ul.right {
   color: black;
   text-align: center;
   text-decoration: underline;
+  font-family: 'Oswald', sans-serif;
 }
 
 .devise {
@@ -40,8 +46,53 @@ ul.right {
 
 .devise a {
   color: black;
+  font-family: 'Oswald', sans-serif;
 }
 
 .devise a:hover {
   color: #E7704F;
+}
+
+.groups {
+  text-align: center;
+  padding-bottom: 100px;
+}
+
+.callout {
+  width: 60%;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 2px solid #302D20;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.callout a {
+  font-size: 24px;
+  color: #EFB57C;
+  font-family: 'Oswald', sans-serif;
+}
+
+.callout a:hover {
+  color: #302D20;
+}
+
+.bottom-bar {
+  background-color: #302D20;
+  color: #EFB57C;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  padding: 30px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+}
+
+.delete-group {
+  color: #EFB57C;
+}
+
+.delete-group:hover {
+  color: white;
 }
