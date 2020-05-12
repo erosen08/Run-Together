@@ -34,8 +34,10 @@ const GroupsIndexContainer = (props) => {
   return (
     <div>
       <h2 className="index-title">Running Groups</h2>
-      {groupTiles}
-      <div>
+      <div className="groups">
+        {groupTiles}
+      </div>
+      <div className="bottom-bar">
       <Link to="/groups/new">Add a Group</Link>
       </div>
     </div>

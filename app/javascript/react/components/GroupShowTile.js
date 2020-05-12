@@ -4,9 +4,13 @@ const GroupShowTile = props => {
 
   return (
     <div>
-      <h3>{props.group.name}</h3>
-      <h5>Description:</h5>
-      <p>{props.group.description}</p>
+      <div>
+        <h2>{props.group.name}</h2>
+      </div>
+      <div className="show callout">
+        <h5>Description:</h5>
+        <p>{props.group.description}</p>
+      </div>
     </div>
   )
 }
