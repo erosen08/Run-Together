@@ -39,7 +39,7 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       response_body = JSON.parse(response.body)
 
       expect(response_body.length).to eq 1
-      expect(response_body["group"].length).to eq 5
+      expect(response_body["group"].length).to eq 6
 
       expect(response_body["group"]["name"]).to eq group1.name
       expect(response_body["group"]["description"]).to eq group1.description

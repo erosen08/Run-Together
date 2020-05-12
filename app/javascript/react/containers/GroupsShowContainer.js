@@ -9,11 +9,11 @@ const GroupsShowContainer = props => {
   const [errors, setErrors] = useState(null)
   const [redirect, setRedirect] = useState(false)
   const [redirectJoin, setRedirectJoin] = useState(false)
-  const [redirectLeave, setRedirectLeave] = useState(false)
   const [group, setGroup] = useState({
     name: "",
     description: "",
-    runs: []
+    runs: [],
+    memberships: []
   })
 
   const id = props.match.params.id
@@ -92,7 +92,7 @@ const GroupsShowContainer = props => {
         return response
       } else {
         let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
+          error = new Error(errorMessage);
         throw(error)
       }
     })
@@ -106,7 +106,7 @@ const GroupsShowContainer = props => {
   }
 
   if (redirectJoin) {
-    return <Redirect to={`/groups/${id}`} />
+    return <Redirect to={'/groups'} />
   }
 
   const handleJoin = event => {
@@ -123,9 +123,9 @@ const GroupsShowContainer = props => {
         />
       </div>
       <div className="bottom-bar">
-        <button onClick={handleJoin}>Join this Group</button><br />
+        <button className="join-group" onClick={handleJoin}>Join this Group</button><br/ >
         <Link to={`/groups/${id}/edit`}>Edit this Group</Link><br />
-        <button className="delete-group" onClick={handleDelete}>Delete</button><br />
+        <button className="delete-group" onClick={handleDelete}>Delete Group</button><br />
         <Link to="/">Back to Home</Link>
       </div>
     </div>
