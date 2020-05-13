@@ -3,22 +3,28 @@ import React, { useEffect } from 'react'
 const MapComponent = (props) => {
 
   useEffect(() => {
-    const uluru = {lat: 60, lng: 60}
+    const geocoder = new google.maps.Geocoder();
+    const address = `${props.location}`
 
-    const map = new google.maps.Map(document.getElementById('map'), {
-         center: uluru,
-         zoom: 12
+    geocoder.geocode( { 'address': address}, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        let latitude = results[0].geometry.location.lat()
+        let longitude = results[0].geometry.location.lng()
+        const map = new google.maps.Map(document.getElementById('map'), {
+             center: results[0].geometry.location,
+             zoom: 15
+        })
+        const marker = new google.maps.Marker({position: results[0].geometry.location, map: map})
+        google.maps.event.addListener(marker, 'click', function () {
+          window.open('https://www.google.com/maps?z=12&t=m&q=loc:latitude+longitude');
+       })
+        marker.setMap( map )
+      }
     })
-
-    const marker = new google.maps.Marker({position: uluru, map: map})
-    google.maps.event.addListener(marker, 'click', function () {
-      window.open(`https://www.google.com/maps?z=12&t=m&q=loc:60+60`);
-   })
-   marker.setMap( map )
   })
 
   return (
-      <div id="map"></div>
+    <div id="map"></div>
   )
 }
 
