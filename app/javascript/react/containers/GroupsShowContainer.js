@@ -99,14 +99,10 @@ const GroupsShowContainer = props => {
     .then(response => response.json())
     .then(body => {
       if (body.notification) {
-        setRedirectJoin(true)
+        alert("You have succesfully joined the group!")
       }
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
-  }
-
-  if (redirectJoin) {
-    return <Redirect to={'/groups'} />
   }
 
   const handleJoin = event => {

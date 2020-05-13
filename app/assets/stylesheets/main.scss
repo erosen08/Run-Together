@@ -16,10 +16,6 @@ label {
   font-family: 'Oswald', sans-serif;
 }
 
-.top-bar {
-  background-color: #302D20;
-}
-
 a {
   color: #EFB57C;
   font-family: 'Oswald', sans-serif;
@@ -27,6 +23,14 @@ a {
 
 a:hover {
   color: white;
+}
+
+.title {
+  color: white;
+}
+
+.top-bar {
+  background-color: #302D20;
 }
 
 ul.right {
@@ -70,12 +74,12 @@ ul.right {
 
 .callout a {
   font-size: 24px;
-  color: #EFB57C;
+  color: #302d20;
   font-family: 'Oswald', sans-serif;
 }
 
 .callout a:hover {
-  color: #302D20;
+  color: #E7704F;
 }
 
 .bottom-bar {
