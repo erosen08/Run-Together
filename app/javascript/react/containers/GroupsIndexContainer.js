@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import ScrollUpButton from 'react-scroll-up-button';
 
 import GroupTile from '../components/GroupTile'
 
@@ -36,6 +37,7 @@ const GroupsIndexContainer = (props) => {
       <h2 className="index-title">Running Groups</h2>
       <div className="groups">
         {groupTiles}
+        <ScrollUpButton />
       </div>
       <div className="bottom-bar">
       <Link to="/groups/new">Add a Group</Link>
