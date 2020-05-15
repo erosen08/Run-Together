@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         resources :memberships, only: [:index, :create]
         resources :runs, only: [:index, :show, :create]
       end
+       resources :weather, only: [:index]
     end
   end
 end
