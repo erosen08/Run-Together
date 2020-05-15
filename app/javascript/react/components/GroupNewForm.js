@@ -45,7 +45,7 @@ const GroupNewForm = props => {
   }
 
   return (
-    <div className="grid-container">
+    <div className="grid-container new-group">
       <form onSubmit={handleSubmit}>
         <ErrorList errors={errors} />
         <label className="name">
