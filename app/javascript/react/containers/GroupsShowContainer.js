@@ -146,6 +146,7 @@ const GroupsShowContainer = props => {
         ...groupRuns,
         parsedNewRun.run
       ])
+      window.scrollTo(0, 0)
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }
