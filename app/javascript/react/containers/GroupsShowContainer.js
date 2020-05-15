@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import GroupShowTile from '../components/GroupShowTile'
 import RunTile from '../components/RunTile'
+import NewRunForm from '../components/NewRunForm'
 
 const GroupsShowContainer = props => {
   const [user, setUser] = useState({});
@@ -15,6 +16,14 @@ const GroupsShowContainer = props => {
     description: "",
     runs: [],
     memberships: []
+  })
+  const [groupRuns, setGroupRuns] = useState([])
+  const [newRun, setNewRun] = useState({
+    name: "",
+    description: "",
+    start_time: "",
+    start_location: "",
+    distance: ""
   })
 
   const id = props.match.params.id
@@ -34,6 +43,7 @@ const GroupsShowContainer = props => {
     .then(parsedGroup => {
       setGroup(parsedGroup.group)
       setUser(parsedGroup.group.user)
+      setGroupRuns(parsedGroup.group.runs)
     })
     .catch(error => console.error(`Error in fetch: ${errorMessage}`))
   }, [])
@@ -111,7 +121,36 @@ const GroupsShowContainer = props => {
     joinGroup(group)
   }
 
-  const groupRuns = group.runs.map(run => {
+  const addNewRun = (formPayload) => {
+    fetch(`/api/v1/groups/${id}/runs`, {
+      credentials: "same-origin",
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      if(response.ok) {
+        return response
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error)
+      }
+    })
+    .then(response => response.json())
+    .then(parsedNewRun => {
+      setGroupRuns([
+        ...groupRuns,
+        parsedNewRun.run
+      ])
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`))
+  }
+
+  const groupRunsList = groupRuns.map(run => {
     return (
       <RunTile
         key={run.id}
@@ -124,7 +163,11 @@ const GroupsShowContainer = props => {
     <div>
       <div className="show">
         <GroupShowTile group={group} />
-        {groupRuns}
+        {groupRunsList}
+        <NewRunForm
+          id={id}
+          addNewRun={addNewRun}
+        />
       </div>
       <div className="bottom-bar">
         <button className="join-group" onClick={handleJoin}>Join this Group</button><br/ >

@@ -12,7 +12,7 @@ const RunShowTile = (props) => {
       <div className="show callout">
         <p>Description: {props.run.description}</p>
         <p>Start Time: {props.run.start_time}</p>
-        <p>Distance: {props.run.distance}</p>
+        <p>Distance: {props.run.distance} miles</p>
         <p>{props.run.start_location}</p>
         <MapComponent location={props.run.start_location} />
       </div>
