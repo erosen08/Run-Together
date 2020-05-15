@@ -7,7 +7,9 @@ const GroupNewForm = props => {
   const [errors, setErrors] = useState({})
   const [newFormPayload, setNewFormPayload] = useState({
     name: "",
-    description: ""
+    description: "",
+    zip: "",
+    difficulty: ""
   })
 
   const handleInputChange = event => {
@@ -19,7 +21,7 @@ const GroupNewForm = props => {
 
   const validForSubmission = () => {
     let submitErrors = {}
-    const requiredFields = ["name", "description"]
+    const requiredFields = ["name", "description", "zip"]
     requiredFields.forEach(field => {
       if (newFormPayload[field].trim() === "") {
         submitErrors = {
@@ -38,7 +40,9 @@ const GroupNewForm = props => {
       props.addNewGroup(newFormPayload)
       setNewFormPayload({
         name: "",
-        description: ""
+        description: "",
+        zip: "",
+        difficulty: ""
       })
       setErrors({})
     }
@@ -68,6 +72,28 @@ const GroupNewForm = props => {
             placeholder="Description"
             onChange={handleInputChange}
             value={newFormPayload.description}
+          />
+        </label>
+        <label className="zip">
+          Zip Code:
+          <input
+            name="zip"
+            id="zip"
+            type="text"
+            placeholder="Zip"
+            onChange={handleInputChange}
+            value={newFormPayload.zip}
+          />
+        </label>
+        <label className="difficulty">
+          Difficulty (optional):
+          <input
+            name="difficulty"
+            id="difficulty"
+            type="text"
+            placeholder="Difficulty"
+            onChange={handleInputChange}
+            value={newFormPayload.difficulty}
           />
         </label>
 
