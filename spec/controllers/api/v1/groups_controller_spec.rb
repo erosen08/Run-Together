@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::GroupsController, type: :controller do
-  let!(:group1) { Group.create(name: "Test Group 1", description: "This is first group") }
-  let!(:group2) { Group.create(name: "Test Group 2", description: "This is the second group") }
+  let!(:group1) { Group.create(name: "Test Group 1", description: "This is first group", zip: "02413", difficulty: "Beginner") }
+  let!(:group2) { Group.create(name: "Test Group 2", description: "This is the second group", zip: "12345") }
 
   describe "GET#index" do
     it "returns a sucessful response status and a content type of json" do
@@ -20,9 +20,12 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
 
       expect(response_body["groups"][0]["name"]).to eq group1.name
       expect(response_body["groups"][0]["description"]).to eq group1.description
+      expect(response_body["groups"][0]["zip"]).to eq group1.zip
+      expect(response_body["groups"][0]["difficulty"]).to eq group1.difficulty
 
       expect(response_body["groups"][1]["name"]).to eq group2.name
       expect(response_body["groups"][1]["description"]).to eq group2.description
+      expect(response_body["groups"][1]["zip"]).to eq group2.zip
     end
   end
 
@@ -39,7 +42,7 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       response_body = JSON.parse(response.body)
 
       expect(response_body.length).to eq 1
-      expect(response_body["group"].length).to eq 6
+      expect(response_body["group"].length).to eq 8
 
       expect(response_body["group"]["name"]).to eq group1.name
       expect(response_body["group"]["description"]).to eq group1.description
@@ -47,7 +50,7 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
   end
 
   describe "POST#create" do
-    let!(:new_group) { { group: { name: "New Group", description: "Hey I'm new" } } }
+    let!(:new_group) { { group: { name: "New Group", description: "Hey I'm new", zip: "45250" } } }
     let!(:no_name) { { group: { description: "I have no name" } } }
     let!(:no_description) { { group: {name: "Failing Group" } } }
 
@@ -69,6 +72,7 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       expect(response_body).to_not be_kind_of(Array)
       expect(response_body["group"]["name"]).to eq "New Group"
       expect(response_body["group"]["description"]).to eq "Hey I'm new"
+      expect(response_body["group"]["zip"]).to eq "45250"
     end
 
     it "does not add a new group to the database upon invalid submission" do
@@ -94,7 +98,7 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
 
   describe "PATCH#edit" do
     it "updates an existing group but does not create a new entry on the database" do
-      happy_body = { id: group1.id, group: { name: "A Better Group 1", description: "New and Improved" } }
+      happy_body = { id: group1.id, group: { name: "A Better Group 1", description: "New and Improved", zip: "12345" } }
 
       previous_count = Group.count
       patch :update, params: happy_body, format: :json
@@ -103,7 +107,7 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
     end
 
     it "returns the json of the newly edited group" do
-      happy_body = { id: group1.id, group: { name: "A Better Group 1", description: "New and Improved" } }
+      happy_body = { id: group1.id, group: { name: "A Better Group 1", description: "New and Improved", zip: "12353" } }
 
       patch :update, params: happy_body, format: :json
       response_body = JSON.parse(response.body)
@@ -114,6 +118,7 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       expect(response_body).to_not be_kind_of(Array)
       expect(response_body["group"]["name"]).to eq "A Better Group 1"
       expect(response_body["group"]["description"]).to eq "New and Improved"
+      expect(response_body["group"]["zip"]).to eq "12353"
     end
 
     it "returns an error when required field is blank" do
