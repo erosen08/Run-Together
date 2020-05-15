@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import ScrollUpButton from 'react-scroll-up-button';
 
 import GroupShowTile from '../components/GroupShowTile'
 import RunTile from '../components/RunTile'
@@ -169,11 +170,10 @@ const GroupsShowContainer = props => {
           id={id}
           addNewRun={addNewRun}
         />
+        <ScrollUpButton />
       </div>
       <div className="bottom-bar">
         <button className="join-group" onClick={handleJoin}>Join this Group</button><br/ >
-        <Link to={`/groups/${id}/edit`}>Edit this Group</Link><br />
-        <button className="delete-group" onClick={handleDelete}>Delete Group</button><br />
         <Link to="/">Back to Home</Link>
       </div>
     </div>

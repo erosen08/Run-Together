@@ -38,6 +38,7 @@ const GroupRunsShowContainer = props => {
         <RunShowTile run={run} />
       </div>
       <div className="bottom-bar">
+        <Link to={`/groups/${run.group_id}`}>Back to Group</Link><br />
         <Link to="/">Back to Home</Link>
       </div>
     </div>
