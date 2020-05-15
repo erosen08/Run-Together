@@ -29,6 +29,10 @@ a:hover {
   color: white;
 }
 
+.title:hover {
+  color: #EFB57C;
+}
+
 .top-bar {
   background-color: #302D20;
 }
@@ -63,7 +67,7 @@ ul.right {
 }
 
 .callout {
-  width: 60%;
+  width: 50%;
   margin: auto;
   margin-bottom: 20px;
   padding: 20px;
@@ -117,4 +121,34 @@ ul.right {
 
 .show.callout {
   margin-bottom: 100px;
+}
+
+.new-user {
+  margin: auto;
+  width: 575px;
+  margin-top: 30px;
+  border: 3px solid #99B2B7;
+  padding: 10px;
+  background-color: #E7704F;
+  margin-bottom: 30px;
+}
+
+.new-login {
+  margin: auto;
+  width: 575px;
+  margin-top: 30px;
+  border: 3px solid #99B2B7;
+  padding: 10px;
+  background-color: #E7704F;
+  margin-bottom: 30px;
+}
+
+.new-group {
+  margin: auto;
+  width: 575px;
+  margin-top: 30px;
+  border: 3px solid #99B2B7;
+  padding: 10px;
+  background-color: #E7704F;
+  margin-bottom: 30px;
 }
