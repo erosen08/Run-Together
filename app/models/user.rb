@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :groups, through: :memberships
 
   validates :first_name, :last_name, presence: true
+
+  def admin?
+  role == "admin"
+  end
 end

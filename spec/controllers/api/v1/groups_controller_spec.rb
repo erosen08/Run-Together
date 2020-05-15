@@ -97,7 +97,9 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
   end
 
   describe "PATCH#edit" do
-    it "updates an existing group but does not create a new entry on the database" do
+    it "updates an existing group but does not create a new entry on the database if user is admin" do
+      admin = FactoryBot.create(:user, role: "admin")
+      sign_in admin
       happy_body = { id: group1.id, group: { name: "A Better Group 1", description: "New and Improved", zip: "12345" } }
 
       previous_count = Group.count
@@ -107,6 +109,8 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
     end
 
     it "returns the json of the newly edited group" do
+      admin = FactoryBot.create(:user, role: "admin")
+      sign_in admin
       happy_body = { id: group1.id, group: { name: "A Better Group 1", description: "New and Improved", zip: "12353" } }
 
       patch :update, params: happy_body, format: :json
@@ -122,6 +126,8 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
     end
 
     it "returns an error when required field is blank" do
+      admin = FactoryBot.create(:user, role: "admin")
+      sign_in admin
       sad_body = { id: group1.id, group: { description: "Where's my name?" } }
 
       post :update, params: sad_body, format: :json
@@ -132,7 +138,9 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
   end
 
   describe "DELETE#destroy" do
-    it "deletes a group" do
+    it "deletes a group if admin" do
+      admin = FactoryBot.create(:user, role: "admin")
+      sign_in admin
       group = { id: group1 }
 
       prev_count = Group.count

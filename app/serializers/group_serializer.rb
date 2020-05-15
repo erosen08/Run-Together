@@ -6,7 +6,7 @@ class GroupSerializer < ActiveModel::Serializer
 
   def user
     if scope
-      {id: scope.id, first_name: scope.first_name, last_name: scope.last_name}
+      {id: scope.id, first_name: scope.first_name, last_name: scope.last_name, role: scope.role}
     else
       {id: nil, first_name: nil, last_name: nil}
     end

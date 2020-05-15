@@ -1,4 +1,6 @@
 class Api::V1::GroupsController < ApplicationController
+  before_action :authorize_user, only: [:destroy]
+
   def index
     render json: Group.all
   end
@@ -41,5 +43,12 @@ class Api::V1::GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name, :description, :zip, :difficulty)
+  end
+
+  def authorize_user
+    if !current_user.admin?
+      flash.now[:notice] = "You do not have access to this page."
+      redirect_to root_path
+    end
   end
 end
