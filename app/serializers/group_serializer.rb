@@ -1,5 +1,5 @@
 class GroupSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :user
+  attributes :id, :name, :description, :difficulty, :zip, :user
 
   has_many :runs
   has_many :memberships
