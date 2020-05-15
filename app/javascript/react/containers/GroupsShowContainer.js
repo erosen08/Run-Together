@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 
 import GroupShowTile from '../components/GroupShowTile'
+import RunTile from '../components/RunTile'
 
 const GroupsShowContainer = props => {
   const [user, setUser] = useState({});
@@ -110,13 +111,20 @@ const GroupsShowContainer = props => {
     joinGroup(group)
   }
 
+  const groupRuns = group.runs.map(run => {
+    return (
+      <RunTile
+        key={run.id}
+        run={run}
+      />
+    )
+  })
+
   return(
     <div>
       <div className="show">
-        <GroupShowTile
-          group={group}
-          runs={group.runs}
-        />
+        <GroupShowTile group={group} />
+        {groupRuns}
       </div>
       <div className="bottom-bar">
         <button className="join-group" onClick={handleJoin}>Join this Group</button><br/ >
