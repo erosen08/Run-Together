@@ -1,7 +1,6 @@
 import React from 'react'
 
 const GroupShowTile = props => {
-  debugger
 
   return (
     <div>
