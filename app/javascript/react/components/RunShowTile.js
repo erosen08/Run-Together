@@ -1,6 +1,7 @@
 import React from 'react'
 
 import MapComponent from './MapComponent'
+import WeatherComponent from './WeatherComponent'
 
 const RunShowTile = (props) => {
 
@@ -15,6 +16,7 @@ const RunShowTile = (props) => {
         <p>Distance: {props.run.distance} miles</p>
         <p>{props.run.start_location}</p>
         <MapComponent location={props.run.start_location} />
+        <WeatherComponent location={props.run.start_location} />
       </div>
     </div>
   )
