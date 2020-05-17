@@ -6,8 +6,18 @@ body {
   background-size: cover;
 }
 
-h2 {
+h2, h3 {
   text-align: center;
+  font-family: 'Oswald', sans-serif;
+}
+
+h5, h6 {
+  color: #302d20;
+  font-family: 'Oswald', sans-serif;
+}
+
+P {
+  color: #302d20;
   font-family: 'Oswald', sans-serif;
 }
 
@@ -120,7 +130,7 @@ ul.right {
 }
 
 .show.callout {
-  margin-bottom: 100px;
+  margin-bottom: 10px;
 }
 
 .new-user {
@@ -161,4 +171,46 @@ ul.right {
   padding: 10px;
   background-color: #E7704F;
   margin-bottom: 300px;
+}
+
+.run-info {
+  font-size: 24px;
+  color: #302d20;
+  font-family: 'Oswald', sans-serif;
+}
+
+.starting-point {
+  text-align: center;
+}
+
+.weather {
+  text-decoration: underline;
+}
+
+.weather-container {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.group-runs {
+  color: #FEE7CF
+}
+
+.description-run {
+  text-align: center;
+}
+
+.difficulty {
+  text-align: center
+}
+
+.zip {
+  text-align: center;
+}
+
+.run-show.callout {
+  margin-bottom: 200px;
 }

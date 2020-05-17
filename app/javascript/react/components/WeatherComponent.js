@@ -32,12 +32,13 @@ const WeatherComponent = (props) => {
   let weatherData = weather ? (<ul>
     <li>Weather:{weather.weather[0].main}</li>
     <li>Description: {weather.weather[0].description}</li>
-    <li>Temperature: {((weather.main.temp - 273.15) * 9/5 + 32).toFixed(0)}F</li>
-    <li>Feels like: {((weather.main.feels_like - 273.15) * 9/5 + 32).toFixed(0)}F</li>
+    <li>Temperature: {((weather.main.temp - 273.15) * 9/5 + 32).toFixed(0)}°F</li>
+    <li>Feels like: {((weather.main.feels_like - 273.15) * 9/5 + 32).toFixed(0)}°F</li>
   </ul>) : <></>
 
   return (
     <div>
+      <p className="weather">Current Weather Conditions:</p>
         {weatherData}
     </div>
   )

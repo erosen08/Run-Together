@@ -10,13 +10,17 @@ const RunShowTile = (props) => {
       <div>
         <h2>{props.run.name}</h2>
       </div>
-      <div className="show callout">
-        <p>Description: {props.run.description}</p>
-        <p>Start Time: {props.run.start_time}</p>
-        <p>Distance: {props.run.distance} miles</p>
-        <p>{props.run.start_location}</p>
-        <MapComponent location={props.run.start_location} />
-        <WeatherComponent location={props.run.start_location} />
+      <div className="run-show callout">
+        <div className= "run-info">
+          <p >Description: {props.run.description}</p>
+          <p>Distance: {props.run.distance} miles</p>
+          <p>Start Time: {props.run.start_time}</p>
+          <div className="weather-container">
+            <WeatherComponent location={props.run.start_location} />
+          </div>
+          <MapComponent location={props.run.start_location} />
+          <p className="starting-point">Starting Location: {props.run.start_location}</p>
+        </div>
       </div>
     </div>
   )

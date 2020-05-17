@@ -165,6 +165,7 @@ const GroupsShowContainer = props => {
     <div>
       <div className="show">
         <GroupShowTile group={group} />
+        <h3 className="group-runs">Group Runs</h3>
         {groupRunsList}
         <NewRunForm
           id={id}
