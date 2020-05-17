@@ -87,14 +87,12 @@ const GroupNewForm = props => {
         </label>
         <label className="difficulty">
           Difficulty (optional):
-          <input
-            name="difficulty"
-            id="difficulty"
-            type="text"
-            placeholder="Difficulty"
-            onChange={handleInputChange}
-            value={newFormPayload.difficulty}
-          />
+          <select name="difficulty" id="difficulty" onChange={handleInputChange} value={newFormPayload.difficulty}>
+            <option value =""></option>
+            <option value ="Beginner">Beginner</option>
+            <option value ="Intermediate">Intermediate</option>
+            <option value ="Expert">Expert</option>
+          </select>
         </label>
 
       <div className="button-group">
