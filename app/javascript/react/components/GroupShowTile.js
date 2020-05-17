@@ -8,10 +8,18 @@ const GroupShowTile = props => {
         <h2>{props.group.name}</h2>
       </div>
       <div className="show callout">
-        <h5>Description:</h5>
+        <h5 className="description-run">Description:</h5>
         <p>{props.group.description}</p>
-        <h6>Zip Code:</h6>
-        <p>{props.group.zip}</p>
+        <div className="grid-x">
+          <div className="cell small-6 difficulty">
+            <h6>Difficulty:</h6>
+            <p>{props.group.difficulty}</p>
+          </div>
+          <div className="cell small-6 zip">
+            <h6>Zip Code:</h6>
+            <p>{props.group.zip}</p>
+          </div>
+        </div>
       </div>
     </div>
   )
