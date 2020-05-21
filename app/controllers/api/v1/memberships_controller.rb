@@ -1,8 +1,4 @@
 class Api::V1::MembershipsController < ApplicationController
-  def index
-    render json: Membership.all
-  end
-
   def create
     membership = Membership.new
     membership.group = Group.find(params[:id])
@@ -14,17 +10,4 @@ class Api::V1::MembershipsController < ApplicationController
       render json: { error: membership.errors.full_messages }, status: :unprocessable_entity
     end
   end
-
-  # def destroy
-  #   group = Group.find(params[:id])
-  #   user = current_user
-  #   membership = Membership.where(user: user, group: group)
-  #
-  #   if membership.destroy
-  #     render json: { notification: "You have left the group successfully removed" }
-  #   else
-  #     render json: { error: "Unable to process this request" }
-  #   end
-  # end
-
 end
